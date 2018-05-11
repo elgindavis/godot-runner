@@ -1,0 +1,128 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Movement2D.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Sky.png" type="Texture" id=2]
+[ext_resource path="res://Runner/Idle0_green.png" type="Texture" id=3]
+[ext_resource path="res://Runner/Idle1_green.png" type="Texture" id=4]
+[ext_resource path="res://Runner/Idle2_green.png" type="Texture" id=5]
+[ext_resource path="res://Runner/Idle3_green.png" type="Texture" id=6]
+[ext_resource path="res://Runner/Idle4_green.png" type="Texture" id=7]
+[ext_resource path="res://Runner/Idle5_green.png" type="Texture" id=8]
+[ext_resource path="res://Runner/Fly0_green.png" type="Texture" id=9]
+[ext_resource path="res://Runner/Run1_green.png" type="Texture" id=10]
+[ext_resource path="res://Runner/Run2_green.png" type="Texture" id=11]
+[ext_resource path="res://Runner/Run3_green.png" type="Texture" id=12]
+[ext_resource path="res://Runner/Run4_green.png" type="Texture" id=13]
+[ext_resource path="res://Runner/Run5_green.png" type="Texture" id=14]
+[ext_resource path="res://Runner/Run6_green.png" type="Texture" id=15]
+[ext_resource path="res://Runner/Run7_green.png" type="Texture" id=16]
+[ext_resource path="res://Runner/Jump0_green.png" type="Texture" id=17]
+[ext_resource path="res://Runner/Jump1_green.png" type="Texture" id=18]
+[ext_resource path="res://Runner/Jump2_green.png" type="Texture" id=19]
+[ext_resource path="res://Runner/Jump3_green.png" type="Texture" id=20]
+[ext_resource path="res://Runner/Jump4_green.png" type="Texture" id=21]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "fly",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": false,
+"name": "jump",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 2, 20 )
+
+[node name="Player" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+
+[node name="Sky" type="Sprite" parent="ParallaxBackground" index="0"]
+
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Sprite" type="AnimatedSprite" parent="." index="1"]
+
+frames = SubResource( 1 )
+animation = "idle"
+frame = 4
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
+
+position = Vector2( 14, -2 )
+scale = Vector2( 1.5, 1.5 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+
+position = Vector2( 10, 4 )
+scale = Vector2( 5, 1 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+
