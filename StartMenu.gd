@@ -10,7 +10,6 @@ export(String, FILE, "*.tscn") var next_world
 
 
 func _on_StartGame_pressed():
-	print("Start!")
 	get_tree().change_scene(next_world)
 
 

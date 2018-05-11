@@ -51,7 +51,7 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 2, 20 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -88,7 +88,6 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 frames = SubResource( 1 )
 animation = "idle"
-frame = 4
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
